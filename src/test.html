@@ -1,0 +1,18 @@
+<script>
+    const API_URL = "http://localhost:8000"
+    function send_attachment() {
+        const formData = new FormData();
+        formData.append('file', document.getElementById("file_input").value);
+        formData.append('uuid', "thisisatestuuidbecauseIdontfeellikeusingalibrary");
+        return fetch(API_URL + "/post-attachment", {
+            method: 'POST',
+            body: formData,
+            // If you add this, upload won't work
+            // headers: {
+            //   'Content-Type': 'multipart/form-data',
+            // }
+        });
+    }
+</script>
+<input type="file" id="file_input">
+<button onclick="send_attachment()">Submit</button>
