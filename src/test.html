@@ -1,9 +1,13 @@
+<input type="file" id="file_input">
 <script>
     const API_URL = "http://localhost:8000"
+    var pickedFile = undefined;
     function send_attachment() {
         const formData = new FormData();
-        formData.append('file', document.getElementById("file_input").value);
+        formData.append('file', pickedFile);
         formData.append('uuid', "thisisatestuuidbecauseIdontfeellikeusingalibrary");
+        formData.append("extension", pickedFile.name.split('.').pop())
+        formData.append("token", token)
         return fetch(API_URL + "/post-attachment", {
             method: 'POST',
             body: formData,
@@ -13,6 +17,13 @@
             // }
         });
     }
+
+    function updateFile(event) {
+        let file = event.target.files[0];
+        pickedFile = file;
+        console.log(pickedFile);
+    }
+    document.getElementById("file_input").onchange = (event) => updateFile(event);
+    
 </script>
-<input type="file" id="file_input">
 <button onclick="send_attachment()">Submit</button>

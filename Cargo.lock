@@ -778,7 +778,9 @@ dependencies = [
 name = "pcs_attachment_server"
 version = "0.1.0"
 dependencies = [
+ "rand",
  "rocket",
+ "serde_json",
 ]
 
 [[package]]
