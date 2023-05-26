@@ -68,7 +68,7 @@ impl Server {
 async fn main() {
     let server = Arc::new(Mutex::new(Server::new()));
     rocket::build()
-        .mount("/", FileServer::from("src"))
+        .mount("/", FileServer::from("attachments"))
         .manage(server.clone())
         .mount("/", routes![post_attachment, issue_token])
         .launch()
